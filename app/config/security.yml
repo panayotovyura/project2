@@ -1,24 +1,13 @@
-# you can read more about security in the related section of the documentation
-# http://symfony.com/doc/current/book/security.html
 security:
-    # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
     encoders:
         Levi9\SportBundle\Entity\User: plaintext
 
-    # http://symfony.com/doc/current/book/security.html#hierarchical-roles
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         db_provider:
             entity:
                 class: Levi9SportBundle:User
                 property: username
 
-    # the main part of the security, where you can set up firewalls
-    # for specific sections of your app
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -27,18 +16,12 @@ security:
             anonymous: ~
             http_basic: ~
             form_login:
-                default_target_path: login_route
-                check_path: /login_check
+                login_path: login_route
+                check_path: login_check
             logout:
-                path:   /logout
+                path: logout
                 target: login_route
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
 
-    # with these settings you can restrict or allow access for different parts
-    # of your application based on roles, ip, host or methods
-    # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(en|ru)?, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(en|ru)/exercises, roles: ROLE_USER }

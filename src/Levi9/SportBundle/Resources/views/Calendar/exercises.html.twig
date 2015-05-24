@@ -1,5 +1,65 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Hello world</h1>
+    <p>
+        {% if app.request.locale == 'en' %}
+            en | <a href="{{ path('exercises', {'_locale': 'ru'}) }}">ru</a>
+        {% else %}
+            <a href="{{ path('exercises', {'_locale': 'en'}) }}">en</a> | ru
+        {% endif %}
+    </p>
+    {% set dateFormat = 'Y-m-d' %}
+    {% set twoWeeksAgo = [] %}
+    {% set weekAgo = [] %}
+    {% set today = [] %}
+    {% for exercise in exercises %}
+        {% set exerciseDate = exercise.date|date(dateFormat) %}
+        {% if 'now'|date(dateFormat) == exerciseDate %}
+            {% set today = today|merge([exercise]) %}
+        {% elseif 'now'|date_modify("-1 week")|date(dateFormat) < exerciseDate %}
+            {% set weekAgo = weekAgo|merge([exercise]) %}
+        {% else %}
+            {% set twoWeeksAgo = twoWeeksAgo|merge([exercise]) %}
+        {% endif %}
+    {% endfor %}
+    {% set weekAgoCount = weekAgo|length %}
+    {% set todayCount = today|length %}
+    {% set linesCount = twoWeeksAgo|length %}
+    {% set linesCount = todayCount > linesCount ? todayCount : linesCount %}
+    {% set linesCount = weekAgoCount > linesCount ? weekAgoCount : linesCount %}
+    <h1>{{ 'Hello %username%'|trans({'%username%': app.user.username}) }}</h1>
+    <p>
+        {{ 'Check that you did in last 3 trainings'|trans }}
+    </p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>{{ '2 weeks ago'|trans }}</th>
+                <th>{{ 'week ago'|trans }}</th>
+                <th>{{ 'today'|trans }}</th>
+            </tr>
+        </thead>
+        {% for i in 0..linesCount-1 %}
+            <tr>
+                {% if twoWeeksAgo[i] is defined %}
+                    <td>{{ twoWeeksAgo[i].description }} {{ twoWeeksAgo[i].weight }} X {{ twoWeeksAgo[i].count }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if weekAgo[i] is defined %}
+                    <td>{{ weekAgo[i].description }} {{ weekAgo[i].weight }} X {{ weekAgo[i].count }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if today[i] is defined %}
+                    <td>{{ today[i].description }} {{ today[i].weight }} X {{ today[i].count }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <a href="{{ path('logout') }}">{{ 'Logout'|trans }}</a>
+    </p>
 {% endblock %}

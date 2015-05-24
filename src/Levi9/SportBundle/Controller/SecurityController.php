@@ -3,30 +3,21 @@
 namespace Levi9\SportBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class SecurityController extends Controller
 {
     /**
-     * @Route("/login", name="login_route")
+     * @Route("/{_locale}", requirements={"_locale" = "en|ru"}, defaults={"_locale" = "en"}, name="login_route")
      * @Template()
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         $authenticationUtils = $this->get('security.authentication_utils');
-
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
         return [
-            // last username entered by the user
-            'last_username' => $lastUsername,
-            'error' => $error,
+            'last_username' => $authenticationUtils->getLastUsername(),
+            'error' => $authenticationUtils->getLastAuthenticationError(),
         ];
     }
 
@@ -35,7 +26,5 @@ class SecurityController extends Controller
      */
     public function loginCheckAction()
     {
-        // this controller will not be executed,
-        // as the route is handled by the Security system
     }
 }

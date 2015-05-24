@@ -3,6 +3,7 @@
 namespace Levi9\SportBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -15,8 +16,14 @@ class CalendarController extends Controller
      */
     public function exercisesAction()
     {
+        $user = $this->getUser();
 
-        dump($this->container->get('doctrine')->getManager()->getRepository('Levi9SportBundle:User')->findAll());
-        return [];
+        if (!$user) {
+            return new RedirectResponse(
+                $this->get('router')->generate('login_route')
+            );
+        }
+
+        return ['exercises' => $this->container->get('sport.exercise')->getList($user)];
     }
 }

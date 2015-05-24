@@ -1,0 +1,4 @@
+services:
+    sport.exercise:
+        class:        Levi9\SportBundle\Services\Exercise
+        arguments:    ["@=service('doctrine').getManager().getRepository('Levi9SportBundle:Exercise')"]

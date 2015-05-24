@@ -1,19 +1,27 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    <p>
+        {% if app.request.locale == 'en' %}
+            en | <a href="{{ path('login_route', {'_locale': 'ru'}) }}">ru</a>
+        {% else %}
+            <a href="{{ path('login_route', {'_locale': 'en'}) }}">en</a> | ru
+        {% endif %}
+    </p>
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     <form action="{{ path('login_check') }}" method="post">
-        <label for="username">Username:</label>
+        <label for="username">{{ 'Username'|trans }}:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}">
 
-        <label for="password">Password:</label>
+        <label for="password">{{ 'Password'|trans }}:</label>
         <input type="password" id="password" name="_password">
 
-        <input type="hidden" name="_target_path" value="{{ path('exercises') }}">
+        <input type="hidden" name="_target_path" value="{{ path('exercises', {'_locale': app.request.locale}) }}">
+        <input type="hidden" name="_failure_path" value="{{ path('login_route', {'_locale': app.request.locale}) }}">
 
-        <button type="submit">login</button>
+        <button type="submit">{{ 'Login'|trans }}</button>
     </form>
 {% endblock %}
