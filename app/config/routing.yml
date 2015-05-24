@@ -1,0 +1,6 @@
+levi9_sport:
+    resource: "@Levi9SportBundle/Controller/"
+    type:     annotation
+
+logout:
+    path:   /logout
