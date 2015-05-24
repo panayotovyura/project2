@@ -17,8 +17,15 @@ class Exercise
         $this->exerciseRepository = $exerciseRepository;
     }
 
+    /**
+     * Get list of exercises by user
+     *
+     * @param User $user
+     *
+     * @return mixed
+     */
     public function getList(User $user)
     {
-        return $this->exerciseRepository->findByUser(['user' => $user]);
+        return $this->exerciseRepository->findBy(['user' => $user]);
     }
 }
