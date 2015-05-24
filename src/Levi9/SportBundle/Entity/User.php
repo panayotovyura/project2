@@ -61,7 +61,7 @@ class User implements UserInterface, \Serializable
      */
     public function setUsername($name)
     {
-        $this->name = $name;
+        $this->username = $name;
 
         return $this;
     }

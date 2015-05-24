@@ -15,6 +15,8 @@ class CalendarController extends Controller
      */
     public function exercisesAction()
     {
+
+        dump($this->container->get('doctrine')->getManager()->getRepository('Levi9SportBundle:User')->findAll());
         return [];
     }
 }
