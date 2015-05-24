@@ -46,7 +46,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -82,7 +82,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {

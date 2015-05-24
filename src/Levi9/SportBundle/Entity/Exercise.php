@@ -65,7 +65,7 @@ class Exercise
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,7 +88,7 @@ class Exercise
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -111,7 +111,7 @@ class Exercise
     /**
      * Get weight
      *
-     * @return integer 
+     * @return integer
      */
     public function getWeight()
     {
@@ -134,7 +134,7 @@ class Exercise
     /**
      * Get count
      *
-     * @return integer 
+     * @return integer
      */
     public function getCount()
     {
@@ -157,7 +157,7 @@ class Exercise
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -180,7 +180,7 @@ class Exercise
     /**
      * Get time
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTime()
     {
@@ -202,6 +202,4 @@ class Exercise
     {
         $this->user = $user;
     }
-
-
 }

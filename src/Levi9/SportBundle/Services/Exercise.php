@@ -12,11 +12,13 @@ class Exercise
      */
     private $exerciseRepository;
 
-    public function __construct(ExerciseRepository $exerciseRepository) {
+    public function __construct(ExerciseRepository $exerciseRepository)
+    {
         $this->exerciseRepository = $exerciseRepository;
     }
 
-    public function getList(User $user) {
+    public function getList(User $user)
+    {
         return $this->exerciseRepository->findByUser(['user' => $user]);
     }
 }
