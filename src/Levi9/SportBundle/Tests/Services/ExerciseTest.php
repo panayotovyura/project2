@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Levi9\SportBundle\Services\Exercise;
 use Levi9\SportBundle\Entity\User;
 use Levi9\SportBundle\Entity\Exercise as ExerciseEntity;
-use Levi9\SportBundle\Entity\Repository\ExerciseRepository;
+use Doctrine\ORM\EntityRepository;
 
 class ExerciseTest extends WebTestCase
 {
@@ -36,11 +36,11 @@ class ExerciseTest extends WebTestCase
     /**
      * @param $returnData
      *
-     * @return ExerciseRepository
+     * @return EntityRepository
      */
     private function mockRepository($returnData)
     {
-        $repository = $this->getMockBuilder('Levi9\SportBundle\Entity\Repository\ExerciseRepository')
+        $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
             ->disableOriginalConstructor()
             ->getMock();
 

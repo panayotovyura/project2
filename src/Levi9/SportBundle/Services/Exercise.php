@@ -2,17 +2,17 @@
 
 namespace Levi9\SportBundle\Services;
 
-use Levi9\SportBundle\Entity\Repository\ExerciseRepository;
+use Doctrine\ORM\EntityRepository;
 use Levi9\SportBundle\Entity\User;
 
 class Exercise
 {
     /**
-     * @var ExerciseRepository
+     * @var EntityRepository
      */
     private $exerciseRepository;
 
-    public function __construct(ExerciseRepository $exerciseRepository)
+    public function __construct(EntityRepository $exerciseRepository)
     {
         $this->exerciseRepository = $exerciseRepository;
     }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Exercise
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Levi9\SportBundle\Entity\Repository\ExerciseRepository")
+ * @ORM\Entity()
  */
 class Exercise
 {
