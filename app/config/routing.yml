@@ -1,6 +1,7 @@
 levi9_sport:
     resource: "@Levi9SportBundle/Controller/"
     type:     annotation
+    # todo: add _locale prefix here only once, no need to copy paste it in all other places
 
 logout:
     path:   /logout
