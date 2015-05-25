@@ -18,6 +18,8 @@ class CalendarController extends Controller
     {
         $user = $this->getUser();
 
+        // todo: why are you doing this check here? Symfony should handle unauthenticated users and
+        // make redirects automatically
         if (!$user) {
             return new RedirectResponse(
                 $this->get('router')->generate('login_route')
