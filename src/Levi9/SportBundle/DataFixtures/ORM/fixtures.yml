@@ -5,8 +5,7 @@ Levi9\SportBundle\Entity\User:
 
 Levi9\SportBundle\Entity\Exercise:
     exercise{1..300}:
-        description: <exercise()>
-        # todo: description: <randomElement(['Chest Press', 'Biceps Curl', 'Front Lunge', 'Pullover'])>
+        description: <randomElement(['Chest Press', 'Biceps Curl', 'Front Lunge', 'Pullover'])>
         weight: <numberBetween(20, 200)>
         count: <numberBetween(5, 15)>
         date: <dateTimeBetween('-1 month', 'now')>

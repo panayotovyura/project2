@@ -16,16 +16,6 @@ class CalendarController extends Controller
      */
     public function exercisesAction()
     {
-        $user = $this->getUser();
-
-        // todo: why are you doing this check here? Symfony should handle unauthenticated users and
-        // make redirects automatically
-        if (!$user) {
-            return new RedirectResponse(
-                $this->get('router')->generate('login_route')
-            );
-        }
-
-        return ['exercises' => $this->container->get('sport.exercise')->getList($user)];
+        return ['exercises' => $this->container->get('sport.exercise')->getList($this->getUser())];
     }
 }

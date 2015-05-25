@@ -17,16 +17,4 @@ class SportLoader extends DataFixtureLoader
 
         );
     }
-
-    // todo: it's better to avoid any logic here (if possible)
-    public function exercise()
-    {
-        $exercises = [
-            'press',
-            'squatting',
-            'jumping',
-        ];
-
-        return $exercises[array_rand($exercises)];
-    }
 }

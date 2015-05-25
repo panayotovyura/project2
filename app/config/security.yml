@@ -23,5 +23,5 @@ security:
                 target: login_route
 
     access_control:
-        - { path: ^/(en|ru)?, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(en|ru)/login?, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(en|ru)/exercises, roles: ROLE_USER }
