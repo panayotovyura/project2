@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/{_locale}", requirements={"_locale" = "en|ru"}, defaults={"_locale" = "en"}, name="login_route")
+     * @Route("/login", name="login_route")
      * @Template()
      */
     public function loginAction()

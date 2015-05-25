@@ -11,7 +11,7 @@ class CalendarController extends Controller
 {
 
     /**
-     * @Route("/{_locale}/exercises", requirements={"_locale" = "en|ru"}, defaults={"_locale" = "en"}, name="exercises")
+     * @Route("/exercises", name="exercises")
      * @Template()
      */
     public function exercisesAction()
