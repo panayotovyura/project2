@@ -7,3 +7,10 @@ levi9_sport:
         _locale: en|ru
 logout:
     path:   /logout
+
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: login_route
+        permanent: true
